@@ -76,10 +76,10 @@ app.post("/send", (req, res, next) => {
 });
 
 //var mongoDB = "mongodb+srv://iceconnected:39913991@cluster0-kjwnq.mongodb.net/bank3?retryWrites=true&w=majority";
-var mongoDB = process.env.DB_LOCAL;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-var db = mongoose.connections;
-db.concat("error", console.error.bind(console, "MongoDB connection error."));
+// var mongoDB = process.env.DB_LOCAL;
+// mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+// var db = mongoose.connections;
+// db.concat("error", console.error.bind(console, "MongoDB connection error."));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
