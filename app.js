@@ -33,6 +33,10 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
+app.get("/", (req, res, next)=>{
+  res.render("index")
+})
+
 app.post("/send", (req, res, next) => {
   const msg = {
     to: req.body.email,
