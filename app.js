@@ -10,6 +10,10 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
+//Configuring the API key
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey("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");
+
 //configuring dotenv
 require("dotenv").config();
 //Importing the body-parser middle ware
@@ -30,49 +34,29 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 app.post("/send", (req, res, next) => {
-  var unirest = require("unirest");
+  const msg = {
+    to: req.body.email,
+    from: "theodore.onyejiaku.g20@gmail.com", // Use the email address or domain you verified above
+    subject: "Sending with Twilio SendGrid is Fun",
+    text: "and easy to do anywhere, even with Node.js",
+    html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+  };
 
-  var req = unirest(
-    "POST",
-    "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send"
-  );
-
-  req.headers({
-    "x-rapidapi-host": "rapidprod-sendgrid-v1.p.rapidapi.com",
-    "x-rapidapi-key": "SIGN-UP-FOR-KEY",
-    "content-type": "application/json",
-    accept: "application/json",
-    useQueryString: true,
-  });
-
-  req.type("json");
-  req.send({
-    personalizations: [
-      {
-        to: [
-          {
-            email: "theodoreonyejiaku@yahoo.com",
-          },
-        ],
-        subject: "Hello, World!",
-      },
-    ],
-    from: {
-      email: "from_address@example.com",
+  //ES6
+  sgMail.send(msg).then(
+    (resp) => {
+      console.log(resp);
+      res.end("Sent Successfully")
     },
-    content: [
-      {
-        type: "text/plain",
-        value: "Hello, World!",
-      },
-    ],
-  });
+    (error) => {
+      console.error(error);
 
-  req.end(function (res) {
-    if (res.error) throw new Error(res.error);
-
-    console.log(res.body);
-  });
+      if (error.response) {
+        console.error(error.response.body);
+      }
+      res.end("Not sent!")
+    }
+  );
 });
 
 //var mongoDB = "mongodb+srv://iceconnected:39913991@cluster0-kjwnq.mongodb.net/bank3?retryWrites=true&w=majority";

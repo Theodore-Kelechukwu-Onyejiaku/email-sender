@@ -1,11 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Email Sender</title>
-</head>
-<body>
-    <input type="text" name="" id="">
-</body>
+    <link rel="stylesheet" href="css/style.css" importance="high"/>
+    <link rel="stylesheet" href="trumbowyg/dist/ui/trumbowyg.min.css" />
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <!-- MODAL START -->
+    <!-- <div id="modal_box">
+      <div class="center">
+        <img src="images/logo.png" alt="" class="logo" style="width:20%;height:auto"/>
+        <div>
+          <button id="close_modal" onclick="closeModal()" style="float:right">X</button>
+        </div>  
+        <div class="myModal">
+              <h1><i><span id="rented_book_title">Response </span></i>&#x2705;</h1>
+              <h4><span id="rented_book_author"></span></h4>
+              <h3>Successfully Delivered!!!</h3>
+          </div>
+          
+      </div>
+  </div> -->
+  <!-- END OF MODAL -->
+
+
+    <div class="container">
+      <nav>
+        <img src="images/logo.png" alt="" class="logo" />
+        <ul>
+          <li>
+            <a href=""><span><img src="images/sent.png" class="icon" alt="" /></span> <span class="text-link">Sent Emails</span></a>
+          </li>
+          <li>
+            <a href=""><span><img src="images/sent.png" class="icon" alt="" /></span> <span class="text-link">Canceled Emails</span></a>
+          </li>
+          <li>
+            <a href=""><span><img src="images/sent.png" class="icon" alt="" /></span> <span class="text-link">Profile</span></a>
+          </li>
+          <li>
+            <a href=""><span><img src="images/sent.png" class="icon" alt="" /></span> <span class="text-link">Logout</span></a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <header>
+          <h1 class="main-head">SMTP</h1>
+        </header>
+        <form action="/send" method="POST" id="form">
+          <div class="from">
+            <label id="label" for="from">FROM:</label><br />
+            <input
+              autofocus
+              type="email"
+              name=""
+              id=""
+              placeholder="email of sender"
+              required
+              disabled
+            />
+            <br/>
+          </div>
+          <br />
+
+          <label id="label" for="">TO:</label><br />
+          <div class="email-box">
+            <textarea
+              name="email"
+              id="emailBox"
+              cols="30"
+              rows="10"
+              style="width: 100%"
+              placeholder="Enter all emails separated with commas. Emails must not be more than 100"
+              required
+            ></textarea>
+            <br />
+            <div class="info">
+              <p class="error"></p>
+              Correct Emails: <span id="enteredEmails">0</span>/<span id="allEmails">0</span>
+            </div>
+            
+            <div id="emails"></div>
+          </div>
+        
+          <!-- BODY OF EMAIL -->
+          <div class="" id="trumbowyg-demo"></div>
+          <!-- END OF BODY OF EMAIL -->
+
+
+          <button id="check"><span style="position: absolute;bottom:0;left:10px">Send</span><img src="images/sent.png" alt=""></button>
+        </form>        
+      </main>
+    </div>
+
+    <!-- Import jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="js/vendor/jquery-3.3.1.min.js"><\/script>'
+        );
+    </script>
+
+    <!-- Import Trumbowyg -->
+    <script src="trumbowyg/dist/trumbowyg.min.js"></script>
+    <script>
+      $("#editor-dropdown").trumbowyg({
+        btnsDef: {
+          // Create a new dropdown
+          image: {
+            dropdown: ["insertImage", "upload"],
+            ico: "insertImage",
+          },
+        },
+        // Redefine the button pane
+        btns: [
+          ["viewHTML"],
+          ["formatting"],
+          ["strong", "em", "del"],
+          ["superscript", "subscript"],
+          ["link"],
+          ["image"], // Our fresh created dropdown
+          ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
+          ["unorderedList", "orderedList"],
+          ["horizontalRule"],
+          ["removeformat"],
+          ["fullscreen"],
+        ],
+        plugins: {
+          // Add imagur parameters to upload plugin for demo purposes
+          upload: {
+            serverPath: "https://api.imgur.com/3/image",
+            fileFieldName: "image",
+            headers: {
+              Authorization: "Client-ID xxxxxxxxxxxx",
+            },
+            urlPropertyName: "data.link",
+          },
+        },
+      });
+
+      $("#trumbowyg-demo").trumbowyg();
+    </script>
+
+    <script src="js/index.js" async></script>
+  </body>
 </html>
