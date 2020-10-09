@@ -88,9 +88,21 @@ input{
 .error{
     color:white;
     display:none;
+    background-color:red;
+    padding:1%;
+    width:auto;
+    box-shadow: 3px 6px 10px black;
+    margin-bottom:5px;
+}
+
+.correct{
+    background-color:#F7C250;
+    padding:1%;
+    box-shadow: 3px 6px 10px black;
+    width:40%;
 }
 .info{
-    color:white
+    color:white;
 }
 
 #check{
@@ -249,8 +261,8 @@ button#close_modal{
     }
 }
 
-
+/* 
 #F7C250
 #ED6B60
 #035AE1
-#64CA57
+#64CA57 */

@@ -6,6 +6,8 @@ var emailBody = document.getElementById("trumbowyg-demo");
 var myForm = document.getElementById("form");
 var numberOfCorrect = document.getElementById("enteredEmails");
 var numberOfEmails = document.getElementById("allEmails");
+var content = document.getElementById("content");
+
 
 
 var close_modal_btn = document.getElementById("close_modal");
@@ -22,7 +24,7 @@ myForm.addEventListener("submit", (e)=>{
     
 })
 
-emailBox.addEventListener("keypress", ()=>{
+emailBox.addEventListener("focus", ()=>{
     errorMessage.style.display = "none"; 
 })
 
@@ -41,7 +43,7 @@ emailBox.addEventListener("input", (e)=>{
 
 
 function trimEmailBox(){
-    return emailBox.value.replace(/[\s|,]+/g, " ");
+    return emailBox.value.replace(/[, ]+/g, " ");
 }
 
 function checkEmailEntered(allEmails){
@@ -59,9 +61,12 @@ function checkEmailEntered(allEmails){
         return false 
     }else if(wrongEmails.length > 0){
         errorMessage.style.display = "block"
-        errorMessage.textContent = "Wrong Email(s): "+ wrongEmails;
+        errorMessage.innerHTML = "&#X26D4; Wrong Email(s): "+ wrongEmails;
         return false
     }else{
+        emailBox.value = emailBox.value.replace(/[ ]+/g, "").trim();
+        content.value = String(emailBody.innerHTML);
+        console.log(content.value)
         return true
     }
 }

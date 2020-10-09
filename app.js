@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 
 //Configuring the API key
 const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey("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");
+sgMail.setApiKey("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");
 
 //configuring dotenv
 require("dotenv").config();
@@ -38,16 +38,25 @@ app.get("/", (req, res, next)=>{
 })
 
 app.post("/send", (req, res, next) => {
+  var allEmails = req.body.email.split(",");
+  var emailContent = req.body.content;
+  console.log(emailContent);
+  
   const msg = {
-    to: req.body.email,
+    to: allEmails,
     from: "theodore.onyejiaku.g20@gmail.com", // Use the email address or domain you verified above
-    subject: "Sending with Twilio SendGrid is Fun",
+    subject: "This is from Theo and for testing",
     text: "and easy to do anywhere, even with Node.js",
-    html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+    //html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+    html: "<body>"
+          +"<h1>Welcome to Testing Phase</h1>"  //Heading
+          +" <div style='background-color:blue;padding:'>"+ emailContent +"</div>"  //Body
+          +"<footer ></footer>"
+          +"</body>"
   };
 
   //ES6
-  sgMail.send(msg).then(
+  sgMail.sendMultiple(msg).then(
     (resp) => {
       console.log(resp);
       res.end("Sent Successfully")

@@ -50,7 +50,7 @@
           <h1 class="main-head">SMTP</h1>
         </header>
         <form action="/send" method="POST" id="form">
-          <div class="from">
+          <!-- <div class="from">
             <label id="label" for="from">FROM:</label><br />
             <input
               autofocus
@@ -62,10 +62,9 @@
               disabled
             />
             <br/>
-          </div>
-          <br />
-
+          </div> -->
           <label id="label" for="">TO:</label><br />
+          <p class="error"></p>
           <div class="email-box">
             <textarea
               name="email"
@@ -76,17 +75,17 @@
               placeholder="Enter all emails separated with commas. Emails must not be more than 100"
               required
             ></textarea>
+            <input type="hidden" id="content" name="content">
             <br />
             <div class="info">
-              <p class="error"></p>
-              Correct Emails: <span id="enteredEmails">0</span>/<span id="allEmails">0</span>
+              <p class="correct">Correct Emails: <span id="enteredEmails">0</span>/<span id="allEmails">0</span></p>
             </div>
             
             <div id="emails"></div>
           </div>
         
           <!-- BODY OF EMAIL -->
-          <div class="" id="trumbowyg-demo"></div>
+          <div class="" id="trumbowyg-demo" style="background-color: white;"></div>
           <!-- END OF BODY OF EMAIL -->
 
 
