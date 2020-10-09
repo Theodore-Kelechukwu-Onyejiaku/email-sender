@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Email Sender</title>
     <link rel="stylesheet"  href="/css/style.css" importance="high"/>
-    <link rel="stylesheet" href="./trumbowyg/dist/ui/trumbowyg.min.css" />
+    <link rel="stylesheet" href="/trumbowyg/dist/ui/trumbowyg.min.css" />
   </head>
   <body>
     <!-- MODAL START -->
@@ -84,7 +84,7 @@
           </div>
         
           <!-- BODY OF EMAIL -->
-          <div class="" id="trumbowyg-demo" style="background-color: white;"></div>
+          <div class="" id="editor-dropdown" style="background-color: white;"></div>
           <!-- END OF BODY OF EMAIL -->
 
 
@@ -92,6 +92,12 @@
         </form>        
       </main>
     </div>
+    
+
+
+
+
+
 
     <!-- Import jQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -104,45 +110,61 @@
 
     <!-- Import Trumbowyg -->
     <script src="/trumbowyg/dist/trumbowyg.min.js"></script>
-    <script>
-      $("#editor-dropdown").trumbowyg({
-        btnsDef: {
-          // Create a new dropdown
-          image: {
-            dropdown: ["insertImage", "upload"],
-            ico: "insertImage",
-          },
-        },
-        // Redefine the button pane
-        btns: [
-          ["viewHTML"],
-          ["formatting"],
-          ["strong", "em", "del"],
-          ["superscript", "subscript"],
-          ["link"],
-          ["image"], // Our fresh created dropdown
-          ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull"],
-          ["unorderedList", "orderedList"],
-          ["horizontalRule"],
-          ["removeformat"],
-          ["fullscreen"],
-        ],
-        plugins: {
-          // Add imagur parameters to upload plugin for demo purposes
-          upload: {
-            serverPath: "https://api.imgur.com/3/image",
-            fileFieldName: "image",
-            headers: {
-              Authorization: "Client-ID xxxxxxxxxxxx",
-            },
-            urlPropertyName: "data.link",
-          },
-        },
-      });
-
-      $("#trumbowyg-demo").trumbowyg();
-    </script>
-
     <script src="js/index.js" async></script>
-  </body>
+
+
+    <!-- Import jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+
+<!-- Import Trumbowyg -->
+<script src="trumbowyg/dist/trumbowyg.min.js"></script>
+
+<!-- Import all plugins you want AFTER importing jQuery and Trumbowyg -->
+<script src="trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js"></script>
+  
+
+
+
+<script>
+   
+  $('#editor-dropdown')
+.trumbowyg({
+   btnsDef: {
+       // Create a new dropdown
+       image: {
+           dropdown: ['insertImage', 'upload'],
+           ico: 'insertImage'
+       }
+   },
+   // Redefine the button pane
+   btns: [
+       ['viewHTML'],
+       ['formatting'],
+       ['strong', 'em', 'del'],
+       ['superscript', 'subscript'],
+       ['link'],
+       ['image'], // Our fresh created dropdown
+       ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+       ['unorderedList', 'orderedList'],
+       ['horizontalRule'],
+       ['removeformat'],
+       ['fullscreen']
+   ],
+   plugins: {
+       // Add imagur parameters to upload plugin for demo purposes
+       upload: {
+           serverPath: 'https://api.imgur.com/3/image',
+           fileFieldName: 'image',
+           headers: {
+               'Authorization': 'Client-ID 9e57cb1c4791cea'
+           },
+           urlPropertyName: 'data.link'
+       }
+   }
+});
+              
+   </script>
+
+</body>
 </html>
